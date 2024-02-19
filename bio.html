@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>esenin | Биография</title>
+
+        <link rel="stylesheet" href="css/tailwind.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="https://unpkg.com/htmx.org@1.9.8" integrity="sha384-rgjA7mptc2ETQqXoYC3/zJvkU7K/aP44Y+z7xQuJiVnB/422P/Ak+F/AqFR7E4Wr" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="js/main.js?force=4"></script>
+
+        <meta http-equiv="Cache-Control" content="max-age=0">
+        <meta http-equiv="Cache-Control" content="no-cache">
+    </head>
+    <body class="body-base" style="display: none;">
+
+        <div class="h-full w-full absolute pointer-events-none overflow-hidden brightness-50 fadeoutbottom -z-0">
+            <img id="background-image" src="/img/creepy.png" class="w-full h-full opacity-0 transition-opacity duration-1000 object-cover" onload="setTimeout(() => { this.style.opacity = 1 }, 100); "/>
+        </div>
+        
+        <script src="/js/background.js"></script>
+
+        <a href="/" class="link z-50 opacity-75 absolute m-8 bottom-0">
+            <div class="bg-neutral-900 drop-shadow-[0_0px_10px_rgba(0,0,0,0.5)] w-12 h-12 rounded-full flex justify-center items-center">
+                <div class="w-6 h-6 fill-neutral-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z"/></svg>
+                </div>
+            </div>
+        </a>
+
+        <!-- main content -->
+        <div id="main" class="flex flex-auto">
+            <div class="main-base justify-center content-center">
+                <div class="centered-container-full-no-rounded">
+                    <span class="font-bold text-2xl">Краткая Биография</span>
+                    <div class="mb-4">Сложная жизнь сложного писателя - по простому.</div>
+                    <div class="m-2 max-w-[128ch] text-left">
+                        Сергей Есенин, родившийся в 1895 году в Рязанской губернии, был сыном зажиточных крестьян. <br>Его бабушка и дедушка играли важную роль в его жизни, вдохновляя его на писание стихов. В начале своей карьеры поэт работал в типографии, где мог читать много книг и стал членом литературного кружка. Есенин поступил на учебу в Московский университет и начал публиковать свои стихи. В 1914 году у него родился сын, а в 1915 году он переехал в Петроград, где его творчество получило признание. Он был призван на военную службу, но избежал фронта благодаря чтению стихов императрице. В 1917 году он познакомился с будущей женой и стал известным поэтом. Есенин путешествовал по стране и зарубежью, женился несколько раз, но его личная жизнь была сложной. <br>В последние годы он столкнулся с разными проблемами и конфликтами, что в итоге привело к его трагической смерти в 1925 году. По разным версиям это могло быть убийством или суицидом.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

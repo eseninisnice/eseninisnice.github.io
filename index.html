@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>esenin</title>
+
+        <link rel="stylesheet" href="css/tailwind.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="https://unpkg.com/htmx.org@1.9.8" integrity="sha384-rgjA7mptc2ETQqXoYC3/zJvkU7K/aP44Y+z7xQuJiVnB/422P/Ak+F/AqFR7E4Wr" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="js/main.js?force=2"></script>
+
+        <meta http-equiv="Cache-Control" content="max-age=0">
+        <meta http-equiv="Cache-Control" content="no-cache">
+    </head>
+    <body class="body-base" style="display: none;">
+        <div class="h-full w-full absolute pointer-events-none overflow-hidden brightness-50 fadeoutbottom -z-0">
+            <img id="background-image" src="/img/coolesenin.png" class="w-full h-full opacity-0 transition-opacity duration-1000 object-cover" onload="setTimeout(() => { this.style.opacity = 1 }, 100); "/>
+        </div>
+        
+        <script src="/js/background.js"></script>
+
+        <!-- main content -->
+        <div id="main" class="flex flex-auto">
+            <div class="main-base justify-center content-center">
+                <div class="centered-container grid">
+                    <span class="font-bold text-2xl mb-4">Есенин Сергей Александрович</span>
+                    <div class="mb-4">Один из самых узнаваемых поэтов России, которого читают во всех уголках мира.<br>Что случилось с ним? Что он писал? Это можно узнать здесь.</div>
+                    <div class="space-x-4 space-y-4">
+                        <a href="/bio.html" class="link"><button class="button w-fit">Узнать о его жизни</button></a>
+                        <a href="/read.html" class="link"><button class="button w-fit">Почитать его произведения</button></a>
+                        <a href="/facts.html" class="link"><button class="button w-fit">Интересные факты</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

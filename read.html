@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>esenin | Стихи</title>
+
+        <link rel="stylesheet" href="css/tailwind.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="https://unpkg.com/htmx.org@1.9.8" integrity="sha384-rgjA7mptc2ETQqXoYC3/zJvkU7K/aP44Y+z7xQuJiVnB/422P/Ak+F/AqFR7E4Wr" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="/js/main.js?force=1"></script>
+
+        <meta http-equiv="Cache-Control" content="max-age=0">
+        <meta http-equiv="Cache-Control" content="no-cache">
+    </head>
+    <body class="body-base" style="display: none;">
+        <div class="h-full w-full absolute pointer-events-none overflow-hidden brightness-50 fadeoutbottom -z-0">
+            <img id="background-image" src="/img/reading.png" class="w-full h-full opacity-0 transition-opacity duration-1000 object-cover" onload="setTimeout(() => { this.style.opacity = 1 }, 100); "/>
+        </div>
+        
+        <script src="/js/background.js"></script>
+
+        <a href="/" class="link z-50 opacity-75 absolute m-8 bottom-0">
+            <div class="bg-neutral-900 drop-shadow-[0_0px_10px_rgba(0,0,0,0.5)] w-12 h-12 rounded-full flex justify-center items-center">
+                <div class="w-6 h-6 fill-neutral-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z"/></svg>
+                </div>
+            </div>
+        </a>
+    
+        <!-- main content -->
+        <div id="main" class="flex flex-auto">
+            <div class="main-base justify-center content-center">
+                <div class="centered-container-full-no-rounded-always">
+                    <span class="font-bold text-2xl mb-4">Произведения Есенина</span>
+                    <div class="mb-4">У него есть многое. Культурное, некультурное, красивое, дерзкое и даже с нецензурной бранью (чего здесь нет).</div>
+                    <div class="flex justify-center items-center">
+                        <div id="poems" class="grid w-fit m-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="poems_data" class="hidden" hx-get="/resources/poems_unicode.json" hx-trigger="load"></div>
+
+        <div id="actual_modal"></div>
+
+        <script>
+            document.body.addEventListener('htmx:afterSettle', function(evt) {
+                const poems = JSON.parse(document.getElementById("poems_data").innerText);
+
+                const modal = `
+
+                <dialog id="modal_{name}" class="bg-opacity-0 text-base text-white w-96 h-96">
+                    <div class="bg-neutral-920 rounded-xl w-full h-full p-4">
+                        <div class="h-full w-full overflow-y-auto">
+                            {poem}
+                            <button id="closebutton_{name}" class="button hidden" inert="true" autofocus="false">Закрыть</button>
+                        </div>
+                    </div>
+                </dialog>
+
+                `;
+
+                var poems_div = document.getElementById("poems");
+
+                for (const [name, poem] of Object.entries(poems)) {
+                    var a = document.createElement("a");
+                    a.href = "#";
+                    a.classList.add("button");
+                    a.classList.add("link");
+                    a.classList.add("m-2");
+                    a.classList.add("w-48");
+                    a.innerText = name;
+                    a.onclick = (event) => {
+                        event.preventDefault();
+
+                        var div_m = document.getElementById("actual_modal");
+
+                        var m = modal;
+                        var p = poem;
+
+                        p = p.replaceAll(/(?:\r\n|\r|\n)/g, '<br>');
+                        m = m.replaceAll("{name}", name).replaceAll("{poem}", p);
+
+                        div_m.innerHTML = m;
+
+                        var dialog = document.getElementById("modal_" + name);
+                        var closeButton = document.getElementById("closebutton_" + name);
+
+                        dialog.showModal();
+                        closeButton.blur();
+
+                        closeButton.addEventListener("click", () => {
+                            dialog.close();
+                        });
+
+                        dialog.addEventListener('click', function(event) {
+                            var rect = dialog.getBoundingClientRect();
+                            var isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+                                rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+                            if (!isInDialog) {
+                                dialog.close();
+                            }
+                        });
+
+                        return false;
+                    };
+                    poems_div.appendChild(a);
+                };
+            });
+        </script>
+
+    </body>
+</html>
